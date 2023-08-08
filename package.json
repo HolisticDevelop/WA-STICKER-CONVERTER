@@ -1,0 +1,37 @@
+{
+  "name": "wa-sticker-converter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./types/esm/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./types/commonjs/index.d.cts",
+        "default": "./commonjs/index.cjs"
+      }
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/static": "^6.10.2",
+    "@fastify/view": "^8.0.0",
+    "@open-wa/wa-automate": "^4.66.3",
+    "fastify": "^4.21.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.8",
+    "typescript": "^5.1.6"
+  }
+}

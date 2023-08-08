@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "NodeNext",
+//    "lib": [
+//      "es2020",
+//      "DOM"
+//    ],
+    "sourceMap": true,
+//    "noImplicitAny": false,
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
