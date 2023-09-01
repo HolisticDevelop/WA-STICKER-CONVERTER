@@ -4,36 +4,35 @@
 import Fastify from "fastify";
 const fastify = Fastify({
     logger: true
-})
+});
 
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import * as path from "path";
-
+import { indexController } from "./controllers/indexController.js";
+import {BotClient} from "./botClient.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-fastify.register(import("@fastify/view"), {
-    engine: {
-        handlebars: import("handlebars"),
-    },
-    root: path.join(__dirname, "views"), // Points to `./views` relative to the current file
-    layout: "./templates/layout.hbs", // Sets the layout to use to `./views/templates/layout.handlebars` relative to the current file.
-    viewExt: "hbs", // Sets the default extension to `.hbs`
-    options: {}
-    // layout: "layout.hbs"
-});
+try {
+    const botClient = await BotClient.getInstance().init({
+        session: 'TEST',
+        // headless: true,
+        // useChrome: false,
+    });
 
-// fastify.register(import("@fastify/static"), {
-//     root: path.join(__dirname, "/public"),
-//     prefix: '/public/', // optional: default '/'
-// })
-
+    botClient.onMessage((message) => {
+        console.log(message.from, typeof message.from);
+        botClient.sendText('573245875857@c.us', 'Hello World');
+    });
+}catch (e) {
+    console.log('Error:', e)
+}
 // Declare a route
-fastify.get('/', async function (request, reply) {
-    reply.view("index.hbs")
-})
+
+
+fastify.post('/upload', indexController.upload);
 
 // Run the server!
 fastify.listen({ port: 3000 }, function (err, address) {

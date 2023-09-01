@@ -28,7 +28,8 @@
     "@fastify/view": "^8.0.0",
     "@open-wa/wa-automate": "^4.66.3",
     "fastify": "^4.21.0",
-    "handlebars": "^4.7.8"
+    "handlebars": "^4.7.8",
+    "liquidjs": "^10.8.4"
   },
   "devDependencies": {
     "@types/node": "^20.4.8",
